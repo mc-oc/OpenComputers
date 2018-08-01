@@ -7,7 +7,12 @@ local event = require("event")
 -- Configuration
 local port = 43254
 local side = sides.right
-local kill_cmd = "kserver"
+local kill = "kill"
+local open = "open"
+local close = "close"
+local strength = 15
+
+-- Component Verification
 
 if not component.isAvailable("redstone") then
   io.stderr:write("This program requires a redstone card or redstone I/O block.\n")
@@ -29,25 +34,36 @@ print("****************************")
 
 print("Starting service...")
 
--- Start service
+-- Start Service
 
 m.open(port)
 
-if m.isOpen(port) then print("Door service is listening on port => " .. port) end
+if m.isOpen(port) then print("Door service is listening on port => " .. port.."\n") end
 
 local running = nil
 
-while running ~= kill_cmd do
+while running ~= kill do
   local _, _, from, port, _, message = event.pull("modem_message")
 
   message = tostring(message)
   running = message
 
-  if message == "open" then
-    rs.setOutput(side, 15)
+  if message == open then
+    rs.setOutput(side, strength)
+    print("[+] : Opening door")
   end
 
-  if message == "close" then
+  if message == close then
     rs.setOutput(side, 0)
+    print("[-] : Closing door")
   end
+
+  if message ~= open and message ~= close  and message ~= kill then
+    print("[-] : " .. message)
+  end
+
+  if message == kill then
+    print("[!] : Killing service")
+  end
+
 end
