@@ -1,6 +1,6 @@
--- Remote Door Network Client
+-- Ligh Controller Network Client
 -- Most commonly used with tablets
--- Requires: rd-service hosting machine
+-- Requires: light-service hosting machine
 
 local colors = require("colors")
 local component = require("component")
@@ -22,7 +22,7 @@ local cmd = args[2]
 local strength = args[3]
 
 if not port or not cmd or not strength then
-  print("Usage: rd-cli <port> <cmd> <strength>")
+  print("Usage: lights-cli <port> <cmd> <strength>")
   return 1
 end
 

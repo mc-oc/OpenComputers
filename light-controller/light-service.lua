@@ -1,6 +1,6 @@
--- Remote Door Network Service
+-- Light Controller Network Service
 -- This script will provide an open port and service for tablets.
--- The service will wait for incoming messages or broadcasts, providing remote door control.
+-- The service will wait for incoming messages or broadcasts, providing remote light control.
 -- Requires: Redstone Card, Wireless Card
 
 local colors = require("colors")
@@ -10,11 +10,11 @@ local sides = require("sides")
 local event = require("event")
 
 -- Configuration
-local port = 43254
+local port = 43255
 local side = sides.right
 local kill = "kill"
-local open = "open"
-local close = "close"
+local on = "on"
+local off = "off"
 local strength = 15
 
 -- Component Verification
@@ -34,7 +34,7 @@ local m = component.modem
 -- Intro
 
 print("****************************")
-print("* Remote Iron Door Service *")
+print("*   Remote Light Service   *")
 print("****************************")
 
 print("Starting service...")
@@ -43,7 +43,7 @@ print("Starting service...")
 
 m.open(port)
 
-if m.isOpen(port) then print("Door service is listening on port => " .. port.."\n") end
+if m.isOpen(port) then print("Light service is listening on port => " .. port.."\n") end
 
 local running = nil
 
@@ -53,17 +53,17 @@ while running ~= kill do
   message = tostring(message)
   running = message
 
-  if message == open then
+  if message == on then
     rs.setOutput(side, strength)
-    print("[+] : [" .. from .. "] : "Opening door")
+    print("[+] : [" .. from .. "] : "Turning on lights")
   end
 
-  if message == close then
+  if message == off then
     rs.setOutput(side, 0)
-    print("[-] : [" .. from .. "] : "Closing door")
+    print("[-] : [" .. from .. "] : Turning off lights")
   end
 
-  if message ~= open and message ~= close  and message ~= kill then
+  if message ~= on and message ~= off  and message ~= kill then
     print("[-] : [" .. from .. "] : " .. message)
   end
 
