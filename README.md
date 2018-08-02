@@ -11,7 +11,7 @@ Website http://www.minecraftopencraft.com
 * `remote-door-controller`
   * Remote Door Controller Network Service
 
-## How to install
+## Raid Installation
 
 #### Preparing Raid
 
