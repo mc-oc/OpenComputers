@@ -5,7 +5,7 @@ You may also want to check out [our own](https://github.com/mc-oc) organization,
 
 ## Programs
 *(open programs' directories and see their READMEs for more info)*
-* `remote-light-controllet`
+* `remote-light-controller`
   * Remote Light Controller Network Service.
 * `remote-door-controller`
   * Remote Door Controller Network Service
