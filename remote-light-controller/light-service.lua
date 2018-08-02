@@ -55,20 +55,19 @@ while running ~= kill do
 
   if message == on then
     rs.setOutput(side, strength)
-    print("[+] : [" .. from .. "] : "Turning on lights")
+    print("[+] : [" .. tostring(from) .. "] : Turning on lights")
   end
 
   if message == off then
     rs.setOutput(side, 0)
-    print("[-] : [" .. from .. "] : Turning off lights")
+    print("[-] : [" .. tostring(from) .. "] : Turning off lights")
   end
 
   if message ~= on and message ~= off  and message ~= kill then
-    print("[-] : [" .. from .. "] : " .. message)
+    print("[-] : [" .. tostring(from) .. "] : " .. message)
   end
 
   if message == kill then
-    print("[!] : [" .. from .. "] : "Killing service")
+    print("[!] : [" .. tostring(from) .. "] : Killing service")
   end
-
 end
