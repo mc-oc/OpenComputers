@@ -10,7 +10,9 @@ Website http://www.minecraftopencraft.com
   * Remote Light Controller Network Service.
 * `remote-door-controller`
   * Remote Door Controller Network Service
-
+* `leash-drone`
+  * Leash drone. This drone will scan a square block area attempting to leash any entity
+  
 ## Raid Installation
 
 #### Preparing Raid
